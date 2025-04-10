@@ -2,7 +2,9 @@ package kr.co.api.product.management.infrastructure;
 
 import kr.co.api.product.management.domain.EntityNotFoundException;
 import kr.co.api.product.management.domain.Product;
+import kr.co.api.product.management.domain.ProductRepository;
 import kr.co.api.product.management.presentation.ProductDto;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -12,7 +14,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
-public class ListProductRepository {
+@Profile("test")
+public class ListProductRepository implements ProductRepository {
 
     // CopyOnWriteArrayList는 멀티 스레드라는 특수한 환경 때문에 Thread Safety 컬렉션
     // 지역변수나 매개변수로 전달되는 리스트의 경우 하나의 스레드에만 접급하기 때문에 안정성이 필요하지 않아 ArrayList 많이 사용
