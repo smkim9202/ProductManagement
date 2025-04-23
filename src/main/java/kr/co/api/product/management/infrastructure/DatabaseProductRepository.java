@@ -46,16 +46,16 @@ public class DatabaseProductRepository implements ProductRepository {
     public Product findById(Long id){
         SqlParameterSource namedParameter = new MapSqlParameterSource("id", id);
 
+        Product product = null;
         try{
-            Product product = namedParameterJdbcTemplate.queryForObject(
+            product = namedParameterJdbcTemplate.queryForObject(
             "SELECT id, name, price, amount FROM products WHERE id=:id"
                 , namedParameter, new BeanPropertyRowMapper<>(Product.class));
 
-            return product;
         } catch (EmptyResultDataAccessException e){
             throw new EntityNotFoundException("Product를 찾지 못했습니다.");
         }
-
+        return product;
     }
 
     public List<Product> findAll() {

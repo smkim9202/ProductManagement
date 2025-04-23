@@ -20,6 +20,22 @@ public class Product {
     @Min(0)
     private Integer amount;
 
+    public Product() {
+    }
+
+    public Product(String name, Integer price, Integer amount) {
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+    }
+
+    public Product(Long id, String name, Integer price, Integer amount) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+    }
+
     public Long getId() {
         return id;
     }
